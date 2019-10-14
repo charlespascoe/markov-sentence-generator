@@ -2,7 +2,7 @@ import * as fs from 'fs';
 
 
 function words(input: string): string[] {
-  const wordRegexp = /[a-z'-]+/gi;
+  const wordRegexp = /([a-z'\-]+|,|\.)/gi;
 
   let match: RegExpExecArray | null;
 
@@ -105,4 +105,4 @@ const chain = buildChain(sourceWords);
 
 const output = generateWords(chain, 'the', 100);
 
-console.log(output.join(' '));
+console.log(output.join(' ').replace(/\s(?=[,.])/g, ''));
